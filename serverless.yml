@@ -1,0 +1,22 @@
+service: aws-timeflys-serverless
+frameworkVersion: '2 || 3'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: eu-west-1
+  lambdaHashingVersion: '20201221'
+
+functions:
+  getAllUsers:
+    handler: handler.getAllUsers
+    events:
+      - httpApi:
+          path: /
+          method: get
+  login:
+    handler: handler.login
+    events:
+      - httpApi:
+          path: /login/{id}
+          method: get
