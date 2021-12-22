@@ -10,22 +10,31 @@ provider:
 functions:
 
 
-  pingGet:
+  ping:
     handler: handler.ping
     events:
       - http:
           path: /api/ping
           method: get
-          cors:
-            origins:
-              - 'http://localhost:4201'
-              - 'http://localhost:3000'
-            headers: # <-- Specify allowed headers
-                - Content-Type
-                - X-Amz-Date
-                - Accept
-                - Authorization
-                - X-Api-Key
-                - X-Amz-Security-Token
-                - X-Amz-User-Agent
-            allowCredentials: true
+          cors: true
+  login:
+    handler: handler.login
+    events:
+      - http:
+          path: /api/users/{id}
+          method: get
+          cors: true
+  isLoggedIn:
+    handler: handler.isLoggedIn
+    events:
+      - http:
+          path: /api/users/isLoggedIn
+          method: get
+          cors: true
+  setCookie:
+    handler: handler.setCookie
+    events:
+      - http:
+          path: /api/set-cookie
+          method: get
+          cors: true
