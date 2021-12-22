@@ -4,19 +4,28 @@ frameworkVersion: '2 || 3'
 provider:
   name: aws
   runtime: nodejs14.x
-  region: eu-west-1
+  region: eu-west-2
   lambdaHashingVersion: '20201221'
 
 functions:
-  getAllUsers:
-    handler: handler.getAllUsers
+
+
+  pingGet:
+    handler: handler.ping
     events:
-      - httpApi:
-          path: /
+      - http:
+          path: /api/ping
           method: get
-  login:
-    handler: handler.login
-    events:
-      - httpApi:
-          path: /login/{id}
-          method: get
+          cors:
+            origins:
+              - 'http://localhost:4201'
+              - 'http://localhost:3000'
+            headers: # <-- Specify allowed headers
+                - Content-Type
+                - X-Amz-Date
+                - Accept
+                - Authorization
+                - X-Api-Key
+                - X-Amz-Security-Token
+                - X-Amz-User-Agent
+            allowCredentials: true
