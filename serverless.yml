@@ -7,52 +7,7 @@ provider:
   region: eu-west-2
   lambdaHashingVersion: '20201221'
 
-
 functions:
-  ping:
-    handler: handler.ping
-    events:
-      - http:
-          path: /api/ping
-          method: get
-          cors: true
-  getAllUsers:
-    handler: handler.getAllUsers
-    events:
-      - http:
-          path: /api/users/
-          method: get
-          cors: true
-  login:
-    handler: handler.login
-    events:
-      - http:
-          path: /api/users/{id}
-          method: get
-          cors:
-            origins:
-              - 'http://localhost:4201'
-              - 'https://localhost:4201'
-              - 'http://localhost:3000'
-            headers: # <-- Specify allowed headers
-              - Content-Type
-              - X-Amz-Date
-              - Accept
-              - Authorization
-              - X-Api-Key
-              - X-Amz-Security-Token
-              - X-Amz-User-Agent
-              - Access-Control-Expose-Headers
-              - Set-Cookie
-              - Access-Control-Allow-Headers
-            allowCredentials: true
-  isLoggedIn:
-    handler: handler.isLoggedIn
-    events:
-      - http:
-          path: /api/users/isLoggedIn
-          method: get
-          cors: true
   setCookie:
     handler: handler.setCookie
     events:
@@ -60,4 +15,14 @@ functions:
           path: /api/set-cookie
           method: get
           cors: true
-
+      - http:
+          path: /api/users/login
+          method: get
+          cors: true
+  ping:
+    handler: handler.ping
+    events:
+      - http:
+          path: /api/ping
+          method: get
+          cors: true
