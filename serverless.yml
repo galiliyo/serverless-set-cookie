@@ -1,4 +1,4 @@
-service: aws-timeflys-serverless
+service: timeflys-serverless
 frameworkVersion: '2 || 3'
 
 provider:
@@ -7,12 +7,20 @@ provider:
   region: eu-west-2
   lambdaHashingVersion: '20201221'
 
+
 functions:
   ping:
     handler: handler.ping
     events:
       - http:
           path: /api/ping
+          method: get
+          cors: true
+  getAllUsers:
+    handler: handler.getAllUsers
+    events:
+      - http:
+          path: /api/users/
           method: get
           cors: true
   login:
@@ -36,7 +44,7 @@ functions:
               - X-Amz-User-Agent
               - Access-Control-Expose-Headers
               - Set-Cookie
-              - Access-Control-Allow-Headers"
+              - Access-Control-Allow-Headers
             allowCredentials: true
   isLoggedIn:
     handler: handler.isLoggedIn
@@ -52,3 +60,4 @@ functions:
           path: /api/set-cookie
           method: get
           cors: true
+

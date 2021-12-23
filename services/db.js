@@ -15,15 +15,13 @@ let dbInstance = null;
 
 
 module.exports.getCollection = async function (collectionName) {
-    let db = null;
-
-    if (db) {
-        db = Promise.resolve(dbInstance);
+    if (dbInstance) {
+        dbInstance = Promise.resolve(dbInstance);
     } else {
-        db = await MongoClient.connect(MONGODB_URI);
-        db = db.db("ui_db");
+        dbInstance = await MongoClient.connect(MONGODB_URI);
+        dbInstance = dbInstance.db("ui_db");
     }
 
 
-    return db.collection(collectionName);
+    return dbInstance.collection(collectionName);
 }

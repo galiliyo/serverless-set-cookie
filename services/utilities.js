@@ -46,11 +46,8 @@ module.exports.getHeaders = (event, additionalHeadersObj) => {
             'Access-Control-Allow-Credentials': true,
         }
     }
-
     if (additionalHeadersObj) {
         headers = {...headers, ...additionalHeadersObj}
     }
     return headers
-
-
 }
