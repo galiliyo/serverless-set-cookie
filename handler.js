@@ -3,7 +3,7 @@ const utilities = require('./services/utilities')
 // const dbjs = require('./services/db.js');
 ////////////////////////////////////////////////////////////
 const MongoClient = require('mongodb').MongoClient;
-// const MONGODB_URI = process.env.MONGO_CONNECTION_STR;
+
 const MONGODB_URI = "mongodb+srv://galiliyo:y46aq7HW53NAr3@cluster0.gbzfo.mongodb.net/ui_atlas_db?retryWrites=true&w=majority";
 let dbInstance = null;
 let db = null;
@@ -29,23 +29,6 @@ module.exports.ping = async event => {
     return {statusCode: 200, headers, body: JSON.stringify(res)};
 }
 
-module.exports.setCookie = async (event, context) => {
-
-    context.callbackWaitsForEmptyEventLoop = false;
-    const additionalHeaders = {
-        "Access-Control-Expose-Headers": "Set-Cookie",
-        "Access-Control-Allow-Headers": "Set-Cookie",
-        "Content-Type": "text/html; charset=UTF-8",
-        "Set-Cookie": "user=YonathanG; expires=Thu, 19 Apr 2022 20:41:27 GMT;  SameSite=None; Path=/; Secure",
-    }
-
-    const headers = utilities.getHeaders(event, additionalHeaders)
-    console.log(`setCookie - headers:`, headers)
-
-    return {statusCode: 200, headers, body: JSON.stringify(event)};
-
-
-}
 
 // module.exports.login = async (event, context) => {
 //     context.callbackWaitsForEmptyEventLoop = false;
@@ -102,7 +85,6 @@ module.exports.login = async (event, context) => {
 
 module.exports.isLoggedIn = async (event, context) => {
     ////////////////////////////////////////////////////////////
-    const MongoClient = require('mongodb').MongoClient;
 // const MONGODB_URI = process.env.MONGO_CONNECTION_STR;
     const MONGODB_URI = "mongodb+srv://galiliyo:y46aq7HW53NAr3@cluster0.gbzfo.mongodb.net/ui_atlas_db?retryWrites=true&w=majority";
     let dbInstance = null;
