@@ -15,10 +15,6 @@ functions:
           path: /api/set-cookie
           method: get
           cors: true
-      - http:
-          path: /api/users/login
-          method: get
-          cors: true
   ping:
     handler: handler.ping
     events:
@@ -26,3 +22,18 @@ functions:
           path: /api/ping
           method: get
           cors: true
+  isLoggedIn:
+    handler: handler.isLoggedIn
+    events:
+      - http:
+          path: /api/users/isLoggedIn
+          method: get
+          cors: true
+  login:
+    handler: handler.login
+    events:
+      - http:
+          path: /api/users/login
+          method: post
+          cors: true
+
